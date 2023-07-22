@@ -211,16 +211,16 @@ div.job-skill:hover::after {
   }
 }
 
-@media screen and (max-width: 455px) {
+/* @media screen and (max-width: 455px) {
+  .job-list-container {
+    padding: 10rem 2rem;
+  }
+
+} */
+
+/* @media screen and (max-width: 398px) {
   .job-list-container {
     padding: 15rem 2rem;
   }
 
-}
-
-@media screen and (max-width: 398px) {
-  .job-list-container {
-    padding: 20rem 2rem;
-  }
-
-}
+} */
