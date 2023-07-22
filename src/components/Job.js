@@ -1,6 +1,6 @@
 export default function Job({ job, onAdd }) {
   return (
-    <div className="job" key={job.id}>
+    <div className={`job ${job.featured ? "border-left" : ""}`} key={job.id}>
       <div className="job-content">
         <img src={job.logo} alt="job-img" className="job-img" />
         <div className="job-info">

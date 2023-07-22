@@ -172,11 +172,14 @@ div.job-skill:hover::after {
   justify-content: space-between;
 }
 
-
 .btn {
   background-color: transparent;
-
 }
+
+.border-left {
+  border-left: 5px solid var(--standard-color) !important;
+}
+
 
 @media screen and (max-width: 999px) {
   .job-list-container {
@@ -210,17 +213,3 @@ div.job-skill:hover::after {
     margin-right: 2rem !important;
   }
 }
-
-/* @media screen and (max-width: 455px) {
-  .job-list-container {
-    padding: 10rem 2rem;
-  }
-
-} */
-
-/* @media screen and (max-width: 398px) {
-  .job-list-container {
-    padding: 15rem 2rem;
-  }
-
-} */
