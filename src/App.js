@@ -16,47 +16,28 @@ function App() {
         return { ...selected, ...skill };
       });
     }
-    if (type === "languages") {
+    if (type === "languages" || type === "tools") {
       setSelectedList((selected) => {
         return {
           ...selected,
-          languages: [...new Set([...selected.languages, skill])],
+          [type]: [...new Set([...selected[type], skill])],
         };
-      });
-    }
-    if (type === "tools") {
-      setSelectedList((selected) => {
-        return { ...selected, tools: [...new Set([...selected.tools, skill])] };
       });
     }
   }
 
-  function handleDeleteOne(skill, type) {
-    if (type === "role") {
-      setSelectedList((selected) => {
-        return { ...selected, role: "" };
+  // edit delete to take only one arg
+  function handleDeleteOne(type, skill) {
+    if (type === "role" || type === "level") {
+      setSelectedList((prevSelected) => {
+        return { ...prevSelected, [type]: "" };
       });
     }
-    if (type === "level") {
-      setSelectedList((selected) => {
-        return { ...selected, level: "" };
-      });
-    }
-    if (type === "languages") {
-      setSelectedList((selected) => {
-        return {
-          ...selected,
-          languages: selected.languages.filter((lang) => lang !== skill),
-        };
-      });
-    }
-    if (type === "tools") {
-      setSelectedList((selected) => {
-        return {
-          ...selected,
-          tools: selected.tools.filter((tool) => tool !== skill),
-        };
-      });
+    if (type === "languages" || type === "tools") {
+      setSelectedList((prevSelected) => ({
+        ...prevSelected,
+        [type]: prevSelected[type].filter((item) => item !== skill),
+      }));
     }
   }
 

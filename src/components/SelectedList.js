@@ -1,42 +1,46 @@
-export default function SelectedList({ selectedList, onClear, onDelete }) {
-  return selectedList.role !== "" ||
-    selectedList.level !== "" ||
-    selectedList.languages.length > 0 ||
-    selectedList.tools.length > 0 ? (
+export default function SelectedList({
+  selectedList: { role, level, languages, tools },
+  onClear,
+  onDelete,
+}) {
+  const valuesToCheck = [role, level, languages.length, tools.length];
+  let continueCode = false;
+  for (let i = 0; i < valuesToCheck.length; i++) {
+    if (valuesToCheck[i]) {
+      continueCode = true;
+      break;
+    }
+  }
+  if (!continueCode) return;
+  return (
     <div className="selectedList">
       <div>
-        {selectedList.role !== "" && (
-          <div
-            className="job-skill"
-            onClick={() => onDelete(selectedList.role, "role")}
-          >
-            {selectedList.role}
+        {role !== "" && (
+          <div className="job-skill" onClick={() => onDelete("role")}>
+            {role}
           </div>
         )}
-        {selectedList.level !== "" && (
-          <div
-            className="job-skill"
-            onClick={() => onDelete(selectedList.level, "level")}
-          >
-            {selectedList.level}
+        {level !== "" && (
+          <div className="job-skill" onClick={() => onDelete("level")}>
+            {level}
           </div>
         )}
-        {selectedList.languages.length > 0 &&
-          selectedList.languages.map((selected, index) => (
+        {languages.length > 0 &&
+          languages.map((selected, index) => (
             <div
               className="job-skill"
               key={index}
-              onClick={() => onDelete(selected, "languages")}
+              onClick={() => onDelete("languages", selected)}
             >
               {selected}
             </div>
           ))}
-        {selectedList.tools.length > 0 &&
-          selectedList.tools.map((selected, index) => (
+        {tools.length > 0 &&
+          tools.map((selected, index) => (
             <div
               className="job-skill"
               key={index}
-              onClick={() => onDelete(selected, "tools")}
+              onClick={() => onDelete("tools", selected)}
             >
               {selected}
             </div>
@@ -46,7 +50,5 @@ export default function SelectedList({ selectedList, onClear, onDelete }) {
         clear
       </button>
     </div>
-  ) : (
-    ""
   );
 }
